@@ -37,16 +37,13 @@ int main() {
   std::cout << "Please enter the annual interest rate (%): ";
   std::cin >> rate;
 
-  // Convert interest rate percentage to decimal
-  rate = rate / 100;
-
   // Read number of annual compounding periods
   std::cout
       << "Please enter the times compounded (4 - quarterly, 12 - monthly): ";
   std::cin >> tPeriod;
 
   // Calculate total amount
-  amount = principal * std::pow((1 + (rate / tPeriod)), tPeriod);
+  amount = principal * std::pow((1 + ((rate / 100) / tPeriod)), tPeriod);
 
   // Calculate interest
   interest = amount - principal;
