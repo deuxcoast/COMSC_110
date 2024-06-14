@@ -52,6 +52,8 @@ int main() {
   interest = amount - principal;
 
   // ACCOUNT SUMMARY
+  std::cout << std::setprecision(2) << std::fixed;
+
   std::cout << "\n        Account Summary\n";
   std::cout << "===============================\n";
 
@@ -64,28 +66,24 @@ int main() {
             << std::endl;
   // Print principal
   std::cout << std::left << std::setw(20) << "Principal: ";
-  std::cout << std::setprecision(2) << std::fixed << "$" << std::right
-            << std::setw(10) << principal << std::endl;
+  std::cout << "$" << std::right << std::setw(10) << principal << std::endl;
 
   // Print interest rate
   std::cout << std::left << std::setw(20) << "Interest Rate: ";
-  std::cout << std::setprecision(2) << std::fixed << std::right << std::setw(11)
-            << rate;
+  std::cout << std::right << std::setw(11) << rate;
   std::cout << std::setw(1) << "%" << std::endl;
 
   // Print times compounded
   std::cout << std::left << std::setw(20) << "Times Compounded: ";
-  std::cout << std::setprecision(2) << std::fixed << std::right << std::setw(11)
-            << tPeriod << std::endl;
+  std::cout << std::right << std::setw(11) << tPeriod << std::endl;
 
   // Print interest
   std::cout << std::left << std::setw(20) << "Interest: ";
-  std::cout << std::setprecision(2) << std::fixed << "$" << std::right
-            << std::setw(10) << interest << std::endl;
+  std::cout << "$" << std::right << std::setw(10) << interest << std::endl;
 
   // Print total amount
   std::cout << std::left << std::setw(20) << "Amount in savings: ";
-  std::cout << std::setprecision(2) << std::fixed << "$" << std::right
-            << std::setw(10) << amount << std::endl;
+  std::cout << "$" << std::right << std::setw(10) << amount << std::endl;
+
   return 0;
 }
