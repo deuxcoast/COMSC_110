@@ -1,3 +1,9 @@
+// COMSC-110 Ch6 Module 9
+// Conor Ney
+//
+// This program modified from Assignment 4 including few function
+// displays a menu to allow the user to choose
+// and find the area of a circle, rectangle or triangle
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -18,38 +24,55 @@ void areaTriangle();  // ask for user input and validate the values of base and
                       // height until both are >= 0 then display the area
 
 int main() {
-    int userChoice;
-    double area;
+    int user_choice;
 
-    showMenu();
-    std::cin >> userChoice;
+    do {
+        showMenu();
+        // read input and only accept numbers
+        if (!(std::cin >> user_choice)) {
+            break;
+            std::cout << "Please enter numbers only.\n\n";
+            // clear the error on the flag on cin
+            std::cin.clear();
+            // skip to the new line
+            std::cin.ignore(10000, '\n');
+            // exit this iteration of do-while loop
+            continue;
+        }
 
-    std::cout << std::setprecision(2) << std::fixed;
+        while (user_choice < CIRCLE_CHOICE || user_choice > QUIT_CHOICE) {
+            std::cout << "Please enter a valid menu choice: ";
+            std::cin >> user_choice;
+        }
 
-    // Calculate area on shape determined by user input
-    switch (userChoice) {
-        case CIRCLE_CHOICE: {
-            areaCircle();
-            break;
-        }
-        case RECTANGLE_CHOICE: {
-            areaRectangle();
-            break;
-        }
-        case TRIANGLE_CHOICE: {
-            areaTriangle();
-            break;
-        }
-        case QUIT_CHOICE: {
-            std::cout << "Adios amigo.\n";
-            break;
-        }
-        default: {
-            std::cout << "Invalid input. Please run the program again.\n";
-            break;
-        }
-    }
+        if (user_choice != QUIT_CHOICE) {
+            // setup formatting for future cout output
+            std::cout << std::setprecision(2) << std::fixed;
 
+            // Calculate area on shape determined by user input
+            switch (user_choice) {
+                case CIRCLE_CHOICE: {
+                    areaCircle();
+                    break;
+                }
+                case RECTANGLE_CHOICE: {
+                    areaRectangle();
+                    break;
+                }
+                case TRIANGLE_CHOICE: {
+                    areaTriangle();
+                    break;
+                }
+                default: {
+                    std::cout
+                        << "Invalid input. Please run the program again.\n";
+                    break;
+                }
+            }
+        }
+
+    } while (user_choice != QUIT_CHOICE);
+    std::cout << "Adios amigo.\n";
     return 0;
 }
 
@@ -65,12 +88,12 @@ void showMenu() {
 
 void areaCircle() {
     const double PI = 3.14159;
-
     double radius, area;
+
     std::cout << "Please enter the value for the radius: ";
     std::cin >> radius;
 
-    // Validate input
+    // Validate radius is non-negative
     if (radius < 0) {
         std::cout << "The radius should be non-negative. Please run the "
                      "program again.\n";
@@ -81,21 +104,26 @@ void areaCircle() {
     // Calculate area
     area = PI * pow(radius, 2.0);
 
-    std::cout << "The area of the circle is: " << area << "\n";
+    std::cout << "The area of the circle is: " << area << "\n\n";
 }
 
 void areaRectangle() {
     double length, width, area;
+
     std::cout << "Please enter the width of the rectangle: ";
     std::cin >> width;
-    std::cout << "Please enter the length of the rectangle: ";
-    std::cin >> length;
 
-    // Validate input
-    while (width < 0 || length < 0) {
-        std::cout << "Both the length and width should be non-negative.\n";
+    // validate width is postive number
+    while (width < 0) {
+        std::cout << "The width should be non-negative.\n";
         std::cout << "Please enter the width of the rectangle: ";
         std::cin >> width;
+    }
+    // validate length is positive number
+    std::cout << "Please enter the length of the rectangle: ";
+    std::cin >> length;
+    while (length < 0) {
+        std::cout << "The length should be non-negative.\n";
         std::cout << "Please enter the length of the rectangle: ";
         std::cin >> length;
     }
@@ -103,22 +131,26 @@ void areaRectangle() {
     // Calculate area
     area = width * length;
 
-    std::cout << "The area of the rectangle is: " << area << "\n";
+    std::cout << "The area of the rectangle is: " << area << "\n\n";
 }
 
 void areaTriangle() {
     double base, height, area;
     std::cout << "Please enter the base of the triangle: ";
     std::cin >> base;
+
+    // validate base is non-negative
+    while (base < 0) {
+        std::cout << "The base should be non-negative.\n";
+        std::cout << "Please enter the base of the triangle: ";
+        std::cin >> base;
+    }
     std::cout << "Please enter the height of the triangle: ";
     std::cin >> height;
 
-    // Validate input
-    while (base < 0 || height < 0) {
-        std::cout
-            << "Both the base and the height must be greater than zero.\n";
-        std::cout << "Please enter the base of the triangle: ";
-        std::cin >> base;
+    // validate height is non-negative
+    while (height < 0) {
+        std::cout << "The height should be non-negative.\n";
         std::cout << "Please enter the height of the triangle: ";
         std::cin >> height;
     }
@@ -126,5 +158,5 @@ void areaTriangle() {
     // Calculate area
     area = base * height * 0.5;
 
-    std::cout << "The area of the triangle is: " << area << "\n";
+    std::cout << "The area of the triangle is: " << area << "\n\n";
 }
