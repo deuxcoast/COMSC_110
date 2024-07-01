@@ -30,7 +30,6 @@ int main() {
         showMenu();
         // read input and only accept numbers
         if (!(std::cin >> user_choice)) {
-            break;
             std::cout << "Please enter numbers only.\n\n";
             // clear the error on the flag on cin
             std::cin.clear();
