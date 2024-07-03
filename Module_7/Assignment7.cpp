@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+
 int main() {
     std::string file_name;
 
@@ -46,7 +47,7 @@ int main() {
         count--;
 
         // calculate average
-        float avg = static_cast<float>(sum) / count;
+        double avg = static_cast<double>(sum) / count;
 
         std::cout << std::endl;
         std::cout << std::endl;

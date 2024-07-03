@@ -52,7 +52,7 @@ int main() {
 
 void fillArray(int a[], int size, int low, int high) {
     // seed random number generator
-    srand(time(0));
+    srand(static_cast<unsigned>(time(0)));
     for (int i = 0; i < size; i++) {
         a[i] = rand() % (high - low + 1) + low;
     }
