@@ -6,10 +6,9 @@
 using namespace std;
 
 int main() {
-    int x = 5;
-    if (x == 2)
-        cout << "This is true!" << endl;
+    int *ptr1 = 0, *ptr2 = 0;
+    if (ptr1 == ptr2)
+        cout << "True" << endl;
     else
-        cout << "This is false!" << endl;
-    cout << "That's all, folks!" << endl;
+        cout << "False" << endl;
 }

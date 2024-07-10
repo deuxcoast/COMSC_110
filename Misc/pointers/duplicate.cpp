@@ -27,5 +27,4 @@ int* duplicateArray(int* arr, int size) {
         new_array[i] = arr[i];
     }
     return new_array;
-    std::unique_ptr<>
 }
