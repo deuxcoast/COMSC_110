@@ -1,6 +1,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <iomanip>
+#include <ios>
 #include <iostream>
 #include <ostream>
 
@@ -36,6 +37,7 @@ void printArray(double* d_ptr, int size) {
         if (i % 10 == 0) {
             std::cout << '\n';
         }
+        std::cout << std::fixed << std::setprecision(3);
         std::cout << std::setw(10) << d_ptr[i];
     }
 }
